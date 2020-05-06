@@ -5,7 +5,7 @@
   "scripts": {
     "dev": "dotenv sapper dev",
     "build": "dotenv sapper build",
-    "export": "sapper export",
+    "export": "dotenv sapper export",
     "start": "node __sapper__/build",
     "cy:run": "cypress run",
     "cy:open": "cypress open",

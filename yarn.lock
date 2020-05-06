@@ -783,6 +783,11 @@ domain-browser@^1.1.1:
   resolved "https://registry.yarnpkg.com/domain-browser/-/domain-browser-1.2.0.tgz#3d31f50191a6749dd1375a7f522e823d42e54eda"
   integrity sha512-jnjyiM6eRyZl2H+W8Q/zLMA481hzi0eszAaBUzIVnmYVDBbnLxVNnfu1HgEBvCbL+71FrxMl3E6lpKH7Ge3OXA==
 
+dotenv@^8.0.0:
+  version "8.2.0"
+  resolved "https://registry.yarnpkg.com/dotenv/-/dotenv-8.2.0.tgz#97e619259ada750eea3e4ea3e26bceea5424b16a"
+  integrity sha512-8sJ78ElpbDJBHNeBzUbUVLsqKdccaa/BXF1uPTw3GrvQTBgrQrtObr2mUrE38vzYd8cEv+m/JBfDLioYcfXoaw==
+
 duplexify@^3.4.2, duplexify@^3.6.0:
   version "3.7.1"
   resolved "https://registry.yarnpkg.com/duplexify/-/duplexify-3.7.1.tgz#2a4df5317f6ccfd91f86d6fd25d8d8a103b88309"
@@ -2190,6 +2195,13 @@ safe-regex@^1.1.0:
   integrity sha1-QKNmnzsHfR6UPURinhV91IAjvy4=
   dependencies:
     ret "~0.1.10"
+
+sapper-environment@^1.0.1:
+  version "1.0.1"
+  resolved "https://registry.yarnpkg.com/sapper-environment/-/sapper-environment-1.0.1.tgz#2844539644e3d9c1a391442ee6ad80fd04e0d56d"
+  integrity sha512-T0O6v6edaonmCH8eP2+ex3Mv3kuZJ8cH3NrCUPLPSXKw9PWcaPh2066dPO1MMkTLB04ONBf9tBX1XOlkEECM0A==
+  dependencies:
+    dotenv "^8.0.0"
 
 sapper@^0.27.0:
   version "0.27.12"

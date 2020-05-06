@@ -3,9 +3,9 @@
   "description": "TODO",
   "version": "0.0.1",
   "scripts": {
-    "dev": "dotenv sapper dev",
-    "build": "dotenv sapper build",
-    "export": "dotenv sapper export",
+    "dev": "sapper dev",
+    "build": "sapper build",
+    "export": "sapper export",
     "start": "node __sapper__/build",
     "cy:run": "cypress run",
     "cy:open": "cypress open",
@@ -14,6 +14,7 @@
   "dependencies": {
     "compression": "^1.7.1",
     "polka": "next",
+    "sapper-environment": "^1.0.1",
     "sirv": "^0.4.0"
   },
   "devDependencies": {

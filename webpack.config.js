@@ -10,6 +10,8 @@ const alias = { svelte: path.resolve('node_modules', 'svelte') };
 const extensions = ['.mjs', '.js', '.json', '.svelte', '.html'];
 const mainFields = ['svelte', 'module', 'browser', 'main'];
 
+const sapperEnv = require('sapper-environment');
+
 module.exports = {
 	client: {
 		entry: config.client.entry(),
@@ -35,6 +37,7 @@ module.exports = {
 			// pending https://github.com/sveltejs/svelte/issues/2377
 			// dev && new webpack.HotModuleReplacementPlugin(),
 			new webpack.DefinePlugin({
+				...sapperEnv(),
 				'process.browser': true,
 				'process.env.NODE_ENV': JSON.stringify(mode)
 			}),

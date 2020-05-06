@@ -1,6 +1,24 @@
+<script context="module">
+	import Axios from 'axios';
+	import { queryDatoCms } from '../utils';
+
+	export const preload = async ({ params, query }) =>
+		queryDatoCms(`
+			query MyQuery {
+				allArticles {
+					id
+					title
+					artwork {
+					id
+					}
+				}
+			}
+		`)
+	;
+</script>
+
 <script>
-	let test = process.env.TEST;
-	console.log(test);
+	export let data;
 </script>
 
 <style>
@@ -43,7 +61,11 @@
 
 <h1>Great success!</h1>
 
-<div>{test}</div>
+{@debug data}
+
+{#each data.allArticles as article}
+	<div>{article.title}</div>
+{/each}
 
 <figure>
 	<img alt='Success Kid' src='successkid.jpg'>

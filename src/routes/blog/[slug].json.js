@@ -1,28 +1,25 @@
-import posts from './_posts.js';
+import { queryDatoCms } from '../../utils';
 
-const lookup = new Map();
-posts.forEach(post => {
-	lookup.set(post.slug, JSON.stringify(post));
-});
+export async function get(req, res) {
+	const { params } = req;
 
-export function get(req, res, next) {
-	// the `slug` parameter is available because
-	// this file is called [slug].json.js
-	const { slug } = req.params;
+	const response = await queryDatoCms(`
+		query ArticleQuery {
+			article(filter: {slug: {eq: "${params.slug}"}}) {
+				slug
+				title
+				_createdAt
+				cover {
+					url
+				}
+				content(markdown: true)
+			}
+		}
+	`);
+	
+	res.writeHead(200, {
+		'Content-Type': 'application/json'
+	});
 
-	if (lookup.has(slug)) {
-		res.writeHead(200, {
-			'Content-Type': 'application/json'
-		});
-
-		res.end(lookup.get(slug));
-	} else {
-		res.writeHead(404, {
-			'Content-Type': 'application/json'
-		});
-
-		res.end(JSON.stringify({
-			message: `Not found`
-		}));
-	}
+	res.end(JSON.stringify(response.data));
 }

@@ -1,16 +1,23 @@
-import posts from './_posts.js';
+import { queryDatoCms } from '../../utils';
 
-const contents = JSON.stringify(posts.map(post => {
-	return {
-		title: post.title,
-		slug: post.slug
-	};
-}));
+export async function get(req, res) {
+	const response = await queryDatoCms(`
+		query BlogQuery {
+			allArticles(orderBy: _createdAt_DESC) {
+				_createdAt
+				content(markdown: true)
+				cover {
+					url
+				}
+				slug
+				title
+			}
+		}
+	`);
 
-export function get(req, res) {
 	res.writeHead(200, {
 		'Content-Type': 'application/json'
 	});
 
-	res.end(contents);
+	res.end(JSON.stringify(response.data));
 }

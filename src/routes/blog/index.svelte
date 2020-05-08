@@ -6,8 +6,6 @@
 
 	export async function preload({ params, query }) {
 		const response = await this.fetch(`blog.json`);
-		console.log('Local server response =', response);
-
 		const data = await response.json();
 
 		return { data };

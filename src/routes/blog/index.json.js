@@ -8,11 +8,12 @@ export async function get(req, res) {
 				content(markdown: true)
 				slug
 				title
+				cover {
+					url
+				}
 			}
 		}
 	`);
-
-	console.log('DatoCMS API response =', response);
 
 	res.writeHead(200, {
 		'Content-Type': 'application/json'

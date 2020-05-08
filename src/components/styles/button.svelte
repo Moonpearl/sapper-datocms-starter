@@ -3,9 +3,14 @@
 -->
 <script>
     import { makeRgbaColor } from '../../utils';
-    import { primaryColor } from './../vars';
+    import { primaryColor, secondaryColor } from './../vars';
 
-    export let color = makeRgbaColor(primaryColor);
+    export let variant = 'primary';
+
+    const colors = {
+        primary: primaryColor,
+        secondary: secondaryColor,
+    };
 </script>
 
 
@@ -67,6 +72,6 @@
 <!-- 
     Content
 -->
-<button style="--color: {color}">
+<button style="--color: {makeRgbaColor(colors[variant])}">
     <slot />
 </button>

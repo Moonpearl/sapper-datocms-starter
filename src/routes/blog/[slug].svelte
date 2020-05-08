@@ -2,8 +2,6 @@
 	Script
 -->
 <script context="module">
-	import Axios from 'axios';
-	import { queryDatoCms } from '../../utils';
 	import { Article } from '../../components/article';
 
 	export async function preload({ params, query }) {

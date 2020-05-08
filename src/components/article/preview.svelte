@@ -2,11 +2,12 @@
     Script
 -->
 <script>
-    import { truncateText } from '../../utils';
+	import { Link } from '../common';
     import { Button, Card } from '../../components/styles';
     
     export let title;
     export let slug;
+    export let category;
     export let content;
     export let cover;
     export let _createdAt;
@@ -35,17 +36,17 @@
     <Card.Body>
         <Card.Title>{title}</Card.Title>
         <Card.Meta>
-            Published on {(new Date(_createdAt)).toLocaleString('en-EN')}
+            Published on {(new Date(_createdAt)).toLocaleString('en-EN')} in <Link href="/blog/category/{category.slug}">{category.name}</Link>
         </Card.Meta>
         <div class="content">
             {@html content}
         </div>
         <Card.Text>
-            <a rel=prefetch href="/blog/{slug}">
+            <Link href="/blog/{slug}">
                 <Button>
                     Read more
                 </Button>
-            </a>
+            </Link>
         </Card.Text>
     </Card.Body>
 </Card>

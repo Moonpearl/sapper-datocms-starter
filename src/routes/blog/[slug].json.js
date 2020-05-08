@@ -12,6 +12,10 @@ export async function get(req, res) {
 				cover {
 					url
 				}
+				category {
+					name
+					slug
+				}
 				content(markdown: true)
 			}
 		}

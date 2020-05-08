@@ -13,6 +13,10 @@ export default async (graphQlQuery) => {
       }
     );
 
+    if (response.errors) {
+      throw response.errors;
+    }
+
     return { data: response.data.data };
   }
   catch (error) {

@@ -2,8 +2,8 @@
     Script
 -->
 <script>
-	import { Link } from '../common';
-    import { Button, Card } from '../../components/styles';
+	import { Link } from 'src/components/common';
+    import { Button, Card } from 'src/components/styles';
     
     export let title;
     export let slug;

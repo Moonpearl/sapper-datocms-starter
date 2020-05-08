@@ -11,8 +11,8 @@
 </script>
 
 <script>
-	import { ResponsiveGrid } from '../../../components/common';
-    import { ArticlePreview } from '../../../components/article'
+	import { ResponsiveGrid } from 'src/components/common';
+    import { ArticlePreview } from 'src/components/article';
 
     export let data = null;
 </script>

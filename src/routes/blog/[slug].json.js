@@ -1,4 +1,4 @@
-import { queryDatoCms } from '../../utils';
+import { queryDatoCms } from 'src/utils';
 
 export async function get(req, res) {
 	const { params } = req;

@@ -16,7 +16,13 @@ module.exports = {
 	client: {
 		entry: config.client.entry(),
 		output: config.client.output(),
-		resolve: { alias, extensions, mainFields },
+		resolve: {
+			alias: {
+				src: path.resolve(__dirname, 'src/')
+			},
+			extensions,
+			mainFields
+		},
 		module: {
 			rules: [
 				{
@@ -49,7 +55,13 @@ module.exports = {
 		entry: config.server.entry(),
 		output: config.server.output(),
 		target: 'node',
-		resolve: { alias, extensions, mainFields },
+		resolve: {
+			alias: {
+				src: path.resolve(__dirname, 'src/')
+			},
+			extensions,
+			mainFields
+		},
 		externals: Object.keys(pkg.dependencies).concat('encoding'),
 		module: {
 			rules: [

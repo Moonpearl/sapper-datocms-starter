@@ -2,8 +2,8 @@
 	Script
 -->
 <script>
-	import { Container, GlobalStyle } from '../components/styles';
-	import { Header, Footer } from '../components/layout';
+	import { Container, GlobalStyle } from 'src/components/styles';
+	import { Header, Footer } from 'src/components/layout';
 
 	export let segment;
 </script>

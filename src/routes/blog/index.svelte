@@ -2,9 +2,6 @@
 	Script
 -->
 <script context="module">
-	import { ResponsiveGrid } from '../../components/common';
-	import { ArticlePreview } from '../../components/article';
-
 	export async function preload({ params, query }) {
 		const response = await this.fetch(`blog.json`);
 		const data = await response.json();
@@ -14,6 +11,9 @@
 </script>
 
 <script>
+	import { ResponsiveGrid } from 'src/components/common';
+	import { ArticlePreview } from 'src/components/article';
+
 	export let data = null;
 </script>
 

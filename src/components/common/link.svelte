@@ -2,8 +2,8 @@
     Script
 -->
 <script>
-    import { makeRgbaColor } from '../../utils';
-	import { primaryColor } from '../vars';
+    import { makeRgbaColor } from 'src/utils';
+	import { primaryColor } from 'src/components/vars';
     export let href;
 </script>
 

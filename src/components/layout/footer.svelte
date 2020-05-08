@@ -2,9 +2,9 @@
     Script
 -->
 <script>
-    import { makeRgbaColor } from '../../utils';
-    import { primaryColor } from '../vars';
-	import { Container } from '../styles';
+    import { makeRgbaColor } from 'src/utils';
+    import { primaryColor } from 'src/components/vars';
+	import { Container } from 'src/components/styles';
 </script>
 
 

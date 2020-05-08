@@ -2,7 +2,7 @@
 	Script
 -->
 <script context="module">
-	import { Article } from '../../components/article';
+	import { Article } from 'src/components/article';
 
 	export async function preload({ params, query }) {
 		const response = await this.fetch(`blog/${params.slug}.json`);

@@ -6,9 +6,6 @@ export async function get(req, res) {
 			allArticles(orderBy: _createdAt_DESC) {
 				_createdAt
 				content(markdown: true)
-				cover {
-					url
-				}
 				slug
 				title
 			}

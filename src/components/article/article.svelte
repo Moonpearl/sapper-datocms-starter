@@ -36,7 +36,7 @@
 <article>
     <h1>{title}</h1>
     <small>
-        <p>Published on {(new Date(_createdAt)).toLocaleString('en-EN')}</p>
+        <p>Published on {(new Date(_createdAt)).toLocaleString('en-EN')} under <Link href="/blog/category/{category.slug}">{category.name}</Link></p>
     </small>
     <img src={cover.url} alt="Article cover" />
     <section>

@@ -3,7 +3,7 @@
 -->
 <script context="module">
 	export async function preload({ params, query }) {
-		const response = await this.fetch(`blog/category/${params.slug}.json`);
+        const response = await this.fetch(`blog/category/${params.slug}.json`);
 		const data = await response.json();
 
 		return { data };
@@ -11,6 +11,7 @@
 </script>
 
 <script>
+	import { ResponsiveGrid } from '../../../components/common';
     import { ArticlePreview } from '../../../components/article'
 
     export let data = null;
@@ -21,12 +22,6 @@
 	Style
 -->
 <style>
-	.grid {
-		display: grid;
-		grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
-		gap: 2em;
-    }
-    
     #description {
         display: block;
         color: grey;
@@ -43,14 +38,14 @@
 </svelte:head>
 
 {#if data}
-<h1>Articles published under {data.category.name}</h1>
-<small id="description">
-    {@html data.category.description}
-</small>
+    <h1>Articles published under {data.category.name}</h1>
+    <small id="description">
+        {@html data.category.description}
+    </small>
 
-<section class="grid">
-	{#each data.allArticles as article}
-		<ArticlePreview {...article} />
-	{/each}
-</section>
+    <ResponsiveGrid>
+        {#each data.allArticles as article}
+            <ArticlePreview {...article} />
+        {/each}
+    </ResponsiveGrid>
 {/if}

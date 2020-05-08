@@ -15,10 +15,11 @@
     a {
         color: var(--color);
         cursor: pointer;
+        text-decoration: none;
     }
 
     a:hover {
-        text-decoration: underline;
+        text-decoration: underline solid;
     }
 </style>
 

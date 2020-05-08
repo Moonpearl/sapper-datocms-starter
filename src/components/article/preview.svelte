@@ -36,7 +36,7 @@
     <Card.Body>
         <Card.Title>{title}</Card.Title>
         <Card.Meta>
-            Published on {(new Date(_createdAt)).toLocaleString('en-EN')} in <Link href="/blog/category/{category.slug}">{category.name}</Link>
+            Published on {(new Date(_createdAt)).toLocaleString('en-EN')} under <Link href="/blog/category/{category.slug}">{category.name}</Link>
         </Card.Meta>
         <div class="content">
             {@html content}

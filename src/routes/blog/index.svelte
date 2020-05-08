@@ -2,6 +2,7 @@
 	Script
 -->
 <script context="module">
+	import { ResponsiveGrid } from '../../components/common';
 	import { ArticlePreview } from '../../components/article';
 
 	export async function preload({ params, query }) {
@@ -18,18 +19,6 @@
 
 
 <!--
-	Style
--->
-<style>
-	.grid {
-		display: grid;
-		grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
-		gap: 2em;
-	}
-</style>
-
-
-<!--
 	Content
 -->
 <svelte:head>
@@ -39,9 +28,9 @@
 <h1>Recent posts</h1>
 
 {#if data}
-<section class="grid">
-	{#each data.allArticles as article}
-		<ArticlePreview {...article} />
-	{/each}
-</section>
+	<ResponsiveGrid>
+		{#each data.allArticles as article}
+			<ArticlePreview {...article} />
+		{/each}
+	</ResponsiveGrid>
 {/if}

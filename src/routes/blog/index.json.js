@@ -15,6 +15,8 @@ export async function get(req, res) {
 		}
 	`);
 
+	console.log('DatoCMS API response =', response);
+
 	res.writeHead(200, {
 		'Content-Type': 'application/json'
 	});

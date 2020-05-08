@@ -2,6 +2,9 @@
 	Script
 -->
 <script>
+	import { makeRgbaColor } from '../../utils';
+	import { primaryColor } from '../vars';
+
 	export let segment;
 </script>
 
@@ -11,7 +14,7 @@
 -->
 <style>
 	nav {
-		border-bottom: 1px solid rgba(255,62,0,0.1);
+		border-bottom: 1px solid var(--transparent-color);
 		font-weight: 300;
 		padding: 0 1em;
 	}
@@ -43,7 +46,7 @@
 		content: '';
 		width: calc(100% - 1em);
 		height: 2px;
-		background-color: rgb(255,62,0);
+		background-color: var(--color);
 		display: block;
 		bottom: -1px;
 	}
@@ -59,7 +62,7 @@
 <!-- 
 	Content
 -->
-<header>
+<header style="--color: {makeRgbaColor(primaryColor)}; --transparent-color: {makeRgbaColor(primaryColor, .2)}">
 	<nav>
 		<ul>
 			<li><a aria-current='{segment === undefined ? "page" : undefined}' href='.'>home</a></li>

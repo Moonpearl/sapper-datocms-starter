@@ -13,7 +13,7 @@ export default async (graphQlQuery) => {
       }
     );
 
-    console.log(response);
+    console.log('DatoCMS query data =', response.data);
 
     return { data: response.data.data };
   }

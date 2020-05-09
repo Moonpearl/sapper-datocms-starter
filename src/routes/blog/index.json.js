@@ -1,7 +1,7 @@
 import { queryDatoCms } from 'src/utils';
 
-export async function get(req, res) {
-	const response = await queryDatoCms(`
+export function get(req, res) {
+	queryDatoCms(`
 		query BlogQuery {
 			allArticles(orderBy: _createdAt_DESC) {
 				_createdAt
@@ -17,11 +17,31 @@ export async function get(req, res) {
 				}
 			}
 		}
-	`);
+	`)
+	.then(response => {
+		let status = 200;
+		if (typeof response.data.errors !== 'undefined') {
+			status = 400;
+		}
 
-	res.writeHead(200, {
-		'Content-Type': 'application/json'
+		res.writeHead(status, {
+			'Content-Type': 'application/json'
+		});
+
+		res.end(JSON.stringify(response.data));
+	})
+	.catch(error => {
+		let status = 500;
+
+		const match = error.message.match(/^Request failed with status code (\d+)$/);
+		if (match) {
+			status = match[1];
+		}
+
+		res.writeHead(status, {
+			'Content-Type': 'application/json'
+		});
+
+		res.end(JSON.stringify(error));
 	});
-
-	res.end(JSON.stringify(response.data));
 }

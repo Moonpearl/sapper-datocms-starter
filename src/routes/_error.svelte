@@ -31,9 +31,16 @@
 	<title>{status}</title>
 </svelte:head>
 
-<h1>{status}</h1>
+<h1>Error {status}</h1>
 
-<p>{error.message}</p>
+{#if typeof error.message === 'string'}
+	<p>{error.message}</p>
+{:else if typeof error.message === 'object'}
+	{#if typeof error.message.message !== 'undefined'}
+		<p>{error.message.message}</p>
+	{/if}
+	<pre>{JSON.stringify(error.message, null, 2)}</pre>
+{/if}
 
 {#if dev && error.stack}
 	<pre>{error.stack}</pre>

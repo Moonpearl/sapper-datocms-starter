@@ -4,7 +4,7 @@
 <script context="module">
 	export async function preload({ params, query }) {
         const response = await this.fetch(`blog/category/${params.slug}.json`);
-		const data = await response.json();
+        const data = await response.json();
 
 		return { data };
 	}

@@ -29,7 +29,7 @@ export async function get(req, res) {
 			'Content-Type': 'application/json'
 		});
 	
-		res.end(JSON.stringify({}));
+		res.end(JSON.stringify({ message: `Article '${params.slug}' not found.` }));
 
 		return;
 	}

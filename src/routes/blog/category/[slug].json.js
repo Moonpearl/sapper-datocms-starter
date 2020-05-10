@@ -13,17 +13,30 @@ export async function get(req, res) {
     }
   `);
 
-  if (categoryResponse.data.category === null) {
+  const { status: categoryStatus, data: categoryData } = categoryResponse;
+  const { data: datoCmsCategoryData } = categoryData;
+
+  if (datoCmsCategoryData && datoCmsCategoryData.category === null) {
     res.writeHead(404, {
       'Content-Type': 'application/json'
     });
   
-    res.end(JSON.stringify({ message: `Category '${params.slug}' not found` }));
+    res.end(JSON.stringify({ message: `Category '${params.slug}' not found.` }));
 
     return;
   }
 
-  const category = categoryResponse.data.category;
+  if (categoryStatus !== 200) {   
+    res.writeHead(categoryStatus, {
+      'Content-Type': 'application/json'
+    });
+
+    res.end({});
+
+    return;
+  }
+
+  const { category } = datoCmsCategoryData;
 
 	const response = await queryDatoCms(`
 		query CategoryArticlesQuery {
@@ -43,11 +56,15 @@ export async function get(req, res) {
 		}
   `);
 
-  response.data.category = category;
+  const { status, data } = response;
+  const { data: datoCmsArticlesData } = data;
 
-	res.writeHead(200, {
+	res.writeHead(status, {
 		'Content-Type': 'application/json'
 	});
 
-	res.end(JSON.stringify(response.data));
+	res.end(JSON.stringify({
+    ...datoCmsArticlesData,
+    ...datoCmsCategoryData,
+  }));
 }

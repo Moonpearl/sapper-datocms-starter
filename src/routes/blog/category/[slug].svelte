@@ -1,0 +1,51 @@
+<!--
+	Script
+-->
+<script context="module">
+	export async function preload({ params, query }) {
+        const response = await this.fetch(`blog/category/${params.slug}.json`);
+        const data = await response.json();
+
+		return { data };
+	}
+</script>
+
+<script>
+	import { ResponsiveGrid } from 'src/components/common';
+    import { ArticlePreview } from 'src/components/article';
+
+    export let data = null;
+</script>
+
+
+<!--
+	Style
+-->
+<style>
+    #description {
+        display: block;
+        color: grey;
+        margin: 2em 0;
+    }
+</style>
+
+
+<!-- 
+    Content
+-->
+<svelte:head>
+	<title>My beautiful blog - {data && data.category.name}</title>
+</svelte:head>
+
+{#if data}
+    <h1>Articles published under {data.category.name}</h1>
+    <small id="description">
+        {@html data.category.description}
+    </small>
+
+    <ResponsiveGrid>
+        {#each data.allArticles as article}
+            <ArticlePreview {...article} />
+        {/each}
+    </ResponsiveGrid>
+{/if}

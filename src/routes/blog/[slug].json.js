@@ -1,28 +1,42 @@
-import posts from './_posts.js';
+import { queryDatoCms } from 'src/utils';
 
-const lookup = new Map();
-posts.forEach(post => {
-	lookup.set(post.slug, JSON.stringify(post));
-});
+export async function get(req, res) {
+	const { params } = req;
 
-export function get(req, res, next) {
-	// the `slug` parameter is available because
-	// this file is called [slug].json.js
-	const { slug } = req.params;
+	const response = await queryDatoCms(`
+		query ArticleQuery {
+			article(filter: {slug: {eq: "${params.slug}"}}) {
+				slug
+				title
+				_createdAt
+				cover {
+					url
+				}
+				category {
+					name
+					slug
+				}
+				content(markdown: true)
+			}
+		}
+	`)
 
-	if (lookup.has(slug)) {
-		res.writeHead(200, {
-			'Content-Type': 'application/json'
-		});
+	const { status, data } = response;
+	const { data: datoCmsData } = data;
 
-		res.end(lookup.get(slug));
-	} else {
+	if (datoCmsData && datoCmsData.article === null) {
 		res.writeHead(404, {
 			'Content-Type': 'application/json'
 		});
+	
+		res.end(JSON.stringify({ message: `Article '${params.slug}' not found.` }));
 
-		res.end(JSON.stringify({
-			message: `Not found`
-		}));
+		return;
 	}
+
+	res.writeHead(status, {
+		'Content-Type': 'application/json'
+	});
+
+	res.end(JSON.stringify(data));
 }

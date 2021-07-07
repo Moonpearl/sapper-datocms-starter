@@ -1,22 +1,36 @@
+<!-- 
+	Script
+-->
 <script>
-	import Nav from '../components/Nav.svelte';
+	import { Container, GlobalStyle } from 'src/components/styles';
+	import { Header, Footer } from 'src/components/layout';
 
 	export let segment;
 </script>
 
+
+<!--
+	Style
+-->
 <style>
 	main {
-		position: relative;
-		max-width: 56em;
-		background-color: white;
-		padding: 2em;
-		margin: 0 auto;
+		padding: 2em 0;
 		box-sizing: border-box;
 	}
 </style>
 
-<Nav {segment}/>
+
+<!-- 
+	Content
+-->
+<GlobalStyle />
+
+<Header {segment}/>
 
 <main>
-	<slot></slot>
+	<Container>
+		<slot></slot>
+	</Container>
 </main>
+
+<Footer />
